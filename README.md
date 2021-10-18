@@ -1,5 +1,16 @@
 # Getting Started with Create React App
 
+##
+- Create new app using create-react-app package.
+- Run in localhost
+- Push to GitHub
+- Deploy to Heroku: Create a new Heroku app: 
+  - connect with GitHub repo, 
+  - use the react buildpack, 
+  - deploy
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
