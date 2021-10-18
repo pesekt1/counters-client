@@ -194,22 +194,4 @@ handleIncrement = (increment) => {
   onClick={() => this.handleIncrement(2)}
 ```
 
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
+- Deploy to Heroku
