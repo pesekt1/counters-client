@@ -1,13 +1,5 @@
 # React-demo
 
-## branches sequence:
-
-- create-react-app
-- hello-world
-- counter-app
-
-
-
 ## Counter app
 
 - Create a component:
