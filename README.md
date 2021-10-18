@@ -70,14 +70,23 @@ console.log("App rendered.");
 Add console.log also in render methods of counters and counter. Reload the page and see the sequence in the console.
 
 
+- Update phase: We can work with previous props and previous state:
 ```javascript
-
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+    if (prevProps.counter.value !== this.props.counter.value){//Ajax call and get data from the server}
+  }
 ```
 
+- Unmount phase: When removing a component from the DOM
 ```javascript
-
+  componentWillUnmount() {
+    console.log("Counter - unmount");
+  }
 ```
 
+- Decrement button:
 ```javascript
 
 ```
