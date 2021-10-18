@@ -51,9 +51,24 @@ class Counters extends Component {
             onIncrement={onIncrement}
 ```
 
-```javascript
+- Mounting phase:
 
+In App component add this:
+```javascript
+constructor() {
+super();
+console.log("App - constructor called.");
+}
+
+componentDidMount() {
+console.log("App - mounted.");
+}
+
+render() {
+console.log("App rendered.");
 ```
+Add console.log also in render methods of counters and counter. Reload the page and see the sequence in the console.
+
 
 ```javascript
 

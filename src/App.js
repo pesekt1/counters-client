@@ -13,6 +13,15 @@ class App extends Component {
     ],
   };
 
+  constructor() {
+    super();
+    console.log("App - constructor called.");
+  }
+
+  componentDidMount() {
+    console.log("App - mounted.");
+  }
+
   handleDelete = (counterId) => {
     console.log("event handler handleDelete called:", counterId);
     const counters = this.state.counters.filter((c) => c.id !== counterId);
@@ -30,7 +39,7 @@ class App extends Component {
   };
 
   handleReset = () => {
-    console.log("reset called.");
+    //console.log("reset called.");
     const counters = this.state.counters.map((c) => {
       c.value = 0;
       return c;
@@ -39,6 +48,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("App rendered.");
     return (
       <React.Fragment>
         <Navbar
