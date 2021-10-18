@@ -40,10 +40,24 @@ Counters.jsx:
 ```
 
 - syncing multiple components:
-```javascript
 
+We want a better layout. We will use App component as the main component hosting all the other components. We want a simple navbar from bootstrap and main container also from the Bootstrap:
+```javascript
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Navbar />
+        <main className="container">
+          <Counters />
+        </main>
+      </React.Fragment>
+    );
+  }
+}
 ```
 
+Now we want to control the state from the App component. So we move the state and all the handlers there:
 ```javascript
 
 ```
