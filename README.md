@@ -1,13 +1,6 @@
 # React-demo
 
-## branches sequence:
-
-- create-react-app
-- hello-world
-- counter-app
-- composing-components-1
-
-## Composing components
+## Composing components - part 1
 
 - We could make a new component that uses multiple counters:
 ```javascript
