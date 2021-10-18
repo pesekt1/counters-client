@@ -2,16 +2,25 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
+    count: 1,
     tags: ["tag1", "tag2", "tag3"],
   };
+
+  handleIncrement() {
+    console.log("increment clicked");
+  }
 
   render() {
     return (
       <div>
         <h1>
           <span className={this.getClasses()}>{this.formatCount()}</span>
-          <button className="btn btn-secondary btn-lg">Increment</button>
+          <button
+            onClick={this.handleIncrement}
+            className="btn btn-secondary btn-lg"
+          >
+            Increment
+          </button>
           <ul>
             {this.state.tags.map((tag) => (
               <li key={tag}>{tag}</li>
