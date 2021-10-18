@@ -189,6 +189,31 @@ In arrow functions, "this" references the parent object. Like this we dont need 
   };
 ```
 
+- Change of the state:
+When state is changed the render method is called(asynchronously).
+
+- Passing event arguments:
+```javascript
+handleIncrement = (increment) => {
+  this.setState({ count: this.state.count + increment });
+};
+
+<button
+  onClick={() => this.handleIncrement(2)}
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
 ```javascript
 
 ```
