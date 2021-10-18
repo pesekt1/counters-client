@@ -10,7 +10,7 @@
 
 ## Counter app
 
-Create a component:
+- Create a component:
 src/components/counter.jsx:
 
 ```javascript
@@ -30,7 +30,7 @@ class Counter extends React.Component {
 export default Counter;
 ```
 
-Dynamic values and functions: Syntax:
+- Dynamic values and functions: Syntax:
 ```javascript
 class Counter extends React.Component {
   state = {
@@ -54,7 +54,7 @@ class Counter extends React.Component {
 }
 ```
 
-We can use any attributes from state:
+- We can use any attributes from state:
 
 ```javascript
 state = {
@@ -73,7 +73,7 @@ render() {
 }
 ```
 
-Class styles:
+- Class styles:
 ```javascript
 render() {
   return (
@@ -85,7 +85,7 @@ render() {
 }
 ```
 
-Dynamically setting the class based on a value:
+- Dynamically setting the class based on a value:
 
 ```javascript
 render() {
@@ -103,7 +103,7 @@ render() {
 }
 ```
 
-Extract into a method:
+- Extract into a method:
 ```javascript
 render() {
   return (
@@ -123,7 +123,7 @@ getClasses() {
 }
 ```
 
-Rendering a list - using map() function:
+- Rendering a list - using map() function:
 ```javascript
 render() {
   return (
@@ -140,7 +140,7 @@ render() {
     </div>
 ```
 
-Handling events:
+- Handling events:
 ```javascript
 handleIncrement() {
   console.log("increment clicked");
@@ -151,21 +151,42 @@ handleIncrement() {
   className="btn btn-secondary btn-lg"
 >
 ```
+NOTE: We are providing a reference to the handler function.
 
+- this keyword:
 ```javascript
-
+handleIncrement() {
+  console.log(this);
+}
 ```
+We will get "undefined" when calling the method in a strict mode. We do not have access to "this".
 
+That would work if we call something like: obj.method() - here "this" is a reference to obj object.
+
+
+- Binding event handlers:
 ```javascript
-
+  constructor() {
+    super();
+    this.handleIncrement = this.handleIncrement.bind(this);
+  }
 ```
+In the constructor "this" is a reference to its object. We can use bind method to bind the event handlers.
+
+Other solution: using arrow functions:
 
 ```javascript
-
+  handleIncrement = () => {
+    console.log("increment clicked", this);
+  };
 ```
+In arrow functions, "this" references the parent object. Like this we dont need the bind method in the constructor.
 
+- Updating the state:
 ```javascript
-
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
 ```
 
 ```javascript
