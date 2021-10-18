@@ -12,8 +12,18 @@ class Counters extends Component {
   };
 
   handleDelete = (counterId) => {
-    console.log("event handler called:", counterId);
+    console.log("event handler handleDelete called:", counterId);
     const counters = this.state.counters.filter((c) => c.id !== counterId);
+    this.setState({ counters: counters });
+  };
+
+  handleIncrement = (counter) => {
+    console.log("event handler handleIncrement called, counter:", counter);
+    const counters = [...this.state.counters]; //copy an array - with references
+    //const counters = this.state.counters.map((c) => c);
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter }; // clone object without the reference, we dont want to directly change the state.
+    counters[index].value++;
     this.setState({ counters: counters });
   };
 
@@ -33,6 +43,7 @@ class Counters extends Component {
         {this.state.counters.map((counter) => (
           <Counter
             onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
             counter={counter}
             selected={true}
             key={counter.id}
