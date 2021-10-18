@@ -15,6 +15,8 @@ class Counter extends Component {
   };
 
   render() {
+    console.log(this.props);
+
     return (
       <div>
         <h1>
@@ -25,6 +27,12 @@ class Counter extends Component {
             className="btn btn-secondary btn-lg"
           >
             Increment
+          </button>
+          <button
+            onClick={() => this.props.onDelete(this.props.counter.id)}
+            className="btn btn-danger btn-lg m-2"
+          >
+            delete
           </button>
         </h1>
       </div>

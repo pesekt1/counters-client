@@ -99,12 +99,36 @@ render() {
         <span className={this.getClasses()}>{this.formatCount()}</span>
 ```
 
-```javascript
+- Raising and handling events:
+Handling an event in Counters component: This is where the state of counters is so the deletion should be handled here.
 
+```javascript
+handleDelete = (counterId) => {
+  const counters = this.state.counters.filter((c) => c.id !== counterId);
+  this.setState({ counters: counters });
+};
+
+render() {
+  return (
+    <div>
+      {this.state.counters.map((counter) => (
+        <Counter
+          onDelete={this.handleDelete}
+          value={counter.value}
+          counter={counter}
+          selected={true}
+          key={counter.id}
+        >
 ```
 
+Raising an event in Counter component: this component does not have a state of counters so it is only raising an event and another component must handle it.
 ```javascript
-
+<button
+  onClick={() => this.props.onDelete(this.props.counter.id)}
+  className="btn btn-danger btn-lg m-2"
+>
+  delete
+</button>
 ```
 
 ```javascript
