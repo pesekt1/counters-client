@@ -87,18 +87,48 @@ Add console.log also in render methods of counters and counter. Reload the page 
 ```
 
 - Decrement button:
-```javascript
 
+App.js:
+```javascript
+  handleDecrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value--;
+    this.setState({ counters: counters });
+  };
+```
+
+counter.jsx:
+```javascript
+<button
+  disabled={this.disableDecrementButton()}
+  onClick={() => onDecrement(counter)}
+  className="btn btn-danger btn-lg"
+>
+  -
+</button>
+
+disableDecrementButton() {
+  return this.props.counter.value > 0 ? false : true;
+}
+```
+
+- Add counter button:
+
+counters.jsx:
+```javascript
+<button onClick={onAddCounter} className="btn btn-primary btn-lg m-2">
+  Add counter
+</button>
 ```
 
 ```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
+handleAddCounter = () => {
+  console.log("add counter");
+  const counters = [...this.state.counters];
+  const counter = { id: counters[counters.length - 1].id + 1, value: 0 };
+  counters.push(counter);
+  this.setState({ counters: counters });
+};
 ```
