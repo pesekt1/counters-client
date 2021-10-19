@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.API_URL;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 class CountersService {
   getAll() {
@@ -8,47 +8,38 @@ class CountersService {
   }
 
   deleteAll() {
-    return axios.delete("http://localhost:3001/api/counters");
+    return axios.delete("counters");
   }
 
   add() {
-    return axios.post("http://localhost:3001/api/counters");
+    return axios.post("counters");
   }
 
   delete(id) {
-    return axios.delete("http://localhost:3001/api/counters/" + id);
+    return axios.delete("counters/" + id);
   }
 
   increment(counter) {
     const incrementedCounter = { ...counter };
     incrementedCounter.value++;
-    return axios.put(
-      "http://localhost:3001/api/counters/" + counter.id,
-      incrementedCounter
-    );
+    return axios.put("counters/" + counter.id, incrementedCounter);
   }
 
   decrement(counter) {
     const decrementedCounter = { ...counter };
     decrementedCounter.value--;
-    return axios.put(
-      "http://localhost:3001/api/counters/" + counter.id,
-      decrementedCounter
-    );
+    return axios.put("counters/" + counter.id, decrementedCounter);
   }
 
   like(counter) {
     const likedCounter = { ...counter };
     likedCounter.liked = !likedCounter.liked;
     console.log(likedCounter);
-    return axios.put(
-      "http://localhost:3001/api/counters/" + counter.id,
-      likedCounter
-    );
+    return axios.put("counters/" + counter.id, likedCounter);
   }
 
   resetAll() {
-    return axios.put("http://localhost:3001/api/counters/");
+    return axios.put("counters/");
   }
 }
 
