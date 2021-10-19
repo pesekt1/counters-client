@@ -20,7 +20,9 @@ class Counters extends Component {
             selected={true}
             key={counter.id}
           >
-            <div>id: {counter.id}</div>
+            <span className="badge bg-secondary bbg-lg m-2">
+              id: {counter.id}
+            </span>
           </Counter>
         ))}
       </div>

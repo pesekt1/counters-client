@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    console.log("prevProps", prevProps);
-    console.log("prevState", prevState);
-  }
-
-  componentWillUnmount() {
-    console.log("Counter - unmount");
-  }
-
   disableDecrementButton() {
     return this.props.counter.value > 0 ? false : true;
   }
@@ -27,7 +18,6 @@ class Counter extends Component {
   }
 
   render() {
-    //console.log(this.props);
     const { onDecrement, onIncrement, onDelete, counter, children } =
       this.props;
 
@@ -39,19 +29,19 @@ class Counter extends Component {
           <button
             disabled={this.disableDecrementButton()}
             onClick={() => onDecrement(counter)}
-            className="btn btn-danger btn-lg m-2"
+            className="btn btn-danger btn-lg"
           >
             -
           </button>
           <button
             onClick={() => onIncrement(counter)}
-            className="btn btn-success btn-lg"
+            className="btn btn-success btn-lg m-2"
           >
-            Increment
+            +
           </button>
           <button
             onClick={() => onDelete(counter.id)}
-            className="btn btn-danger btn-lg m-2"
+            className="btn btn-danger btn-lg"
           >
             delete
           </button>

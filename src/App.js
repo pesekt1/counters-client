@@ -13,23 +13,12 @@ class App extends Component {
     ],
   };
 
-  constructor() {
-    super();
-    console.log("App - constructor called.");
-  }
-
-  componentDidMount() {
-    console.log("App - mounted.");
-  }
-
   handleDelete = (counterId) => {
-    console.log("event handler handleDelete called:", counterId);
     const counters = this.state.counters.filter((c) => c.id !== counterId);
     this.setState({ counters: counters });
   };
 
   handleDecrement = (counter) => {
-    console.log("decrement", counter);
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
@@ -38,7 +27,6 @@ class App extends Component {
   };
 
   handleIncrement = (counter) => {
-    console.log("event handler handleIncrement called, counter:", counter);
     const counters = [...this.state.counters]; //copy an array - with references
     //const counters = this.state.counters.map((c) => c);
     const index = counters.indexOf(counter);
@@ -48,7 +36,6 @@ class App extends Component {
   };
 
   handleReset = () => {
-    //console.log("reset called.");
     const counters = this.state.counters.map((c) => {
       c.value = 0;
       return c;
@@ -57,7 +44,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("App rendered.");
     return (
       <React.Fragment>
         <Navbar
