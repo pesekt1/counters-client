@@ -34,7 +34,7 @@ class App extends Component {
     CountersService.delete(counterId)
       .then((response) => {
         const counters = [...this.state.counters];
-        const deletedCounter = counters.find((c) => c.id === response.data.id);
+        const deletedCounter = counters.find((c) => c.id == counterId);
         const index = counters.indexOf(deletedCounter);
         counters.splice(index, 1);
         this.setState({ counters: counters });
@@ -63,7 +63,9 @@ class App extends Component {
         console.log("response: ", response.data);
         const counters = [...this.state.counters];
         const index = counters.indexOf(counter);
-        counters[index] = { ...response.data };
+        const decCounter = { ...counter };
+        decCounter.value--;
+        counters[index] = { ...decCounter };
         this.setState({ counters: counters });
       })
       .catch((e) => {
@@ -77,7 +79,9 @@ class App extends Component {
         console.log("response: ", response.data);
         const counters = [...this.state.counters];
         const index = counters.indexOf(counter);
-        counters[index] = { ...response.data };
+        const incCounter = { ...counter };
+        incCounter.value++;
+        counters[index] = { ...incCounter };
         this.setState({ counters: counters });
       })
       .catch((e) => {
@@ -114,7 +118,9 @@ class App extends Component {
         console.log("response: ", response.data);
         const counters = [...this.state.counters];
         const index = counters.indexOf(counter);
-        counters[index] = { ...response.data };
+        const likedCounter = { ...counter };
+        likedCounter.liked = !likedCounter.liked;
+        counters[index] = { ...likedCounter };
         this.setState({ counters: counters });
       })
       .catch((e) => {
