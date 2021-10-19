@@ -28,6 +28,15 @@ class App extends Component {
     this.setState({ counters: counters });
   };
 
+  handleDecrement = (counter) => {
+    console.log("decrement", counter);
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value--;
+    this.setState({ counters: counters });
+  };
+
   handleIncrement = (counter) => {
     console.log("event handler handleIncrement called, counter:", counter);
     const counters = [...this.state.counters]; //copy an array - with references
@@ -60,6 +69,7 @@ class App extends Component {
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
             onDelete={this.handleDelete}
+            onDecrement={this.handleDecrement}
           />
         </main>
       </React.Fragment>
