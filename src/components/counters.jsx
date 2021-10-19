@@ -13,16 +13,24 @@ class Counters extends Component {
       onDeleteAll,
       onLike,
     } = this.props;
-
+    console.log(counters);
     return (
       <div>
-        <button onClick={onReset} className="btn btn-danger btn-lg">
+        <button
+          onClick={onReset}
+          className="btn btn-danger btn-lg"
+          disabled={!counters.filter((c) => c.value > 0).length}
+        >
           Reset all
         </button>
         <button onClick={onAddCounter} className="btn btn-primary btn-lg m-2">
           Add counter
         </button>
-        <button onClick={onDeleteAll} className="btn btn-danger btn-lg">
+        <button
+          onClick={onDeleteAll}
+          className="btn btn-danger btn-lg"
+          disabled={!counters.length}
+        >
           Delete all
         </button>
         {counters.map((counter) => (

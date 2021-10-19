@@ -2,7 +2,7 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import Counters from "./components/counters";
 import React, { Component } from "react";
-import FakeService from "./services/fakeCountersService";
+import CountersService from "./services/countersHttpService";
 
 class App extends Component {
   constructor() {
@@ -17,48 +17,110 @@ class App extends Component {
     console.log("App component mounted");
   }
 
-  //we dont want array references nor item references
   retrieveCounters = () => {
-    let countersCopy = [];
-    for (let i = 0; i < FakeService.getCounters().length; i++) {
-      countersCopy[i] = { ...FakeService.getCounters()[i] };
-    }
-    this.setState({ counters: countersCopy });
+    CountersService.getAll()
+      .then((response) => {
+        this.setState({
+          counters: response.data,
+        });
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   handleDelete = (counterId) => {
-    FakeService.deleteCounter(counterId);
-    this.retrieveCounters();
+    CountersService.delete(counterId)
+      .then((response) => {
+        const counters = [...this.state.counters];
+        const deletedCounter = response.data;
+        const index = counters.indexOf(deletedCounter);
+        counters.splice(index, 1);
+        this.setState({ counters: counters });
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   handleDeleteAll = () => {
-    FakeService.deleteAll();
-    this.retrieveCounters();
+    CountersService.deleteAll()
+      .then((response) => {
+        this.setState({
+          counters: [],
+        });
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   handleDecrement = (counter) => {
-    FakeService.updateCounter(counter, -1);
-    this.retrieveCounters();
+    CountersService.decrement(counter)
+      .then((response) => {
+        console.log("response: ", response.data);
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...response.data };
+        this.setState({ counters: counters });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   handleIncrement = (counter) => {
-    FakeService.updateCounter(counter, 1);
-    this.retrieveCounters();
+    CountersService.increment(counter)
+      .then((response) => {
+        console.log("response: ", response.data);
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...response.data };
+        this.setState({ counters: counters });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   handleReset = () => {
-    FakeService.resetAll();
-    this.retrieveCounters();
+    CountersService.resetAll()
+      .then((response) => {
+        this.setState({ counters: response.data });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   handleAddCounter = () => {
-    FakeService.addCounter();
-    this.retrieveCounters();
+    CountersService.add()
+      .then((response) => {
+        const counters = [...this.state.counters];
+        counters.push(response.data);
+        this.setState({ counters: counters });
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   handleLike = (counter) => {
-    FakeService.updateCounter(counter, 0);
-    this.retrieveCounters();
+    CountersService.like(counter)
+      .then((response) => {
+        console.log("response: ", response.data);
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...response.data };
+        this.setState({ counters: counters });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   render() {
