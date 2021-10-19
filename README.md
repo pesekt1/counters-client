@@ -23,12 +23,15 @@ Next steps:
 ## http service - deployment to Heroku
 - We hardcoded the APIs, so when we have our backend and frontend deployed on Heroku, it does not work... Our web client is still communicating with our localhost.
 
-```javascript
-
+Add env files: Fill the values according to your project.
+- .env.development
+```
+REACT_APP_API_URL=http://localhost:3001/api/
 ```
 
-```javascript
-
+- .env.production
+```
+REACT_APP_API_URL=https://counters-web-server.herokuapp.com/api/
 ```
 
 ```javascript

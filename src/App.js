@@ -34,8 +34,11 @@ class App extends Component {
     CountersService.delete(counterId)
       .then((response) => {
         const counters = [...this.state.counters];
-        const deletedCounter = response.data;
+        console.log(counters);
+        console.log(response.data);
+        const deletedCounter = counters.find((c) => c.id === response.data.id);
         const index = counters.indexOf(deletedCounter);
+        console.log(index);
         counters.splice(index, 1);
         this.setState({ counters: counters });
         console.log(response);
