@@ -19,13 +19,14 @@ function addCounter() {
   return counters;
 }
 
-// increment +1 or -1
+// increment:
+//+1 -> increment
+//-1 -> decrement
+//0 -> change liked attribute
 function updateCounter(counter, increment) {
   let counterInDb = counters.find((c) => c.id === counter.id) || {};
   counterInDb.value = counter.value + increment;
-
   counterInDb.liked = increment ? counterInDb.liked : !counterInDb.liked;
-
   return counterInDb;
 }
 
