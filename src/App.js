@@ -2,65 +2,63 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import Counters from "./components/counters";
 import React, { Component } from "react";
-import { getCounters } from "./services/fakeCountersService";
+import FakeService from "./services/fakeCountersService";
 
 class App extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
-    ],
+  constructor() {
+    super();
+    this.state = {
+      counters: [],
+    };
+  }
+
+  componentDidMount() {
+    this.retrieveCounters();
+    console.log("App component mounted");
+  }
+
+  //we dont want array references nor item references
+  retrieveCounters = () => {
+    let countersCopy = [];
+    for (let i = 0; i < FakeService.getCounters().length; i++) {
+      countersCopy[i] = { ...FakeService.getCounters()[i] };
+    }
+    this.setState({ counters: countersCopy });
   };
 
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     counters: [],
-  //   };
-  // }
-
   handleDelete = (counterId) => {
-    const counters = this.state.counters.filter((c) => c.id !== counterId);
-    this.setState({ counters: counters });
+    FakeService.deleteCounter(counterId);
+    this.retrieveCounters();
+  };
+
+  handleDeleteAll = () => {
+    FakeService.deleteAll();
+    this.retrieveCounters();
   };
 
   handleDecrement = (counter) => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value--;
-    this.setState({ counters: counters });
+    FakeService.updateCounter(counter, -1);
+    this.retrieveCounters();
   };
 
   handleIncrement = (counter) => {
-    const counters = [...this.state.counters]; //copy an array - with references
-    //const counters = this.state.counters.map((c) => c);
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter }; // clone object without the reference, we dont want to directly change the state.
-    counters[index].value++;
-    this.setState({ counters: counters });
+    FakeService.updateCounter(counter, 1);
+    this.retrieveCounters();
   };
 
   handleReset = () => {
-    const counters = this.state.counters.map((c) => {
-      c.value = 0;
-      return c;
-    });
-    this.setState({ counters: counters });
+    FakeService.resetAll();
+    this.retrieveCounters();
   };
 
   handleAddCounter = () => {
-    console.log("add counter");
-    const counters = [...this.state.counters];
-    const newId = counters.length ? counters[counters.length - 1].id + 1 : 1;
-    const counter = { id: newId, value: 0 };
-    counters.push(counter);
-    this.setState({ counters: counters });
+    FakeService.addCounter();
+    this.retrieveCounters();
   };
 
   render() {
+    console.log("state.counters:", this.state.counters);
+    console.log("fake counters:", FakeService.getCounters());
     return (
       <React.Fragment>
         <Navbar
@@ -74,6 +72,7 @@ class App extends Component {
             onDelete={this.handleDelete}
             onDecrement={this.handleDecrement}
             onAddCounter={this.handleAddCounter}
+            onDeleteAll={this.handleDeleteAll}
           />
         </main>
       </React.Fragment>

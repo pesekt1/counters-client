@@ -1,25 +1,55 @@
-const counters = [
+let counters = [
   { id: 1, value: 0 },
   { id: 2, value: 0 },
   { id: 3, value: 0 },
 ];
 
-export function getCounters() {
+function getCounters() {
   return counters;
 }
 
-export function getCounter(id) {
+function getCounter(id) {
   return counters.find((c) => c.id === id);
 }
 
-export function saveCounter(counter) {
+function addCounter() {
+  const newId = counters.length ? counters[counters.length - 1].id + 1 : 1;
+  const newCounter = { id: newId, value: 0 };
+  counters.push(newCounter);
+  return counters;
+}
+
+// increment +1 or -1
+function updateCounter(counter, increment) {
   let counterInDb = counters.find((c) => c.id === counter.id) || {};
-  counterInDb.value = counter.value;
+  counterInDb.value = counter.value + increment;
   return counterInDb;
 }
 
-export function deletecounter(id) {
+function deleteCounter(id) {
   let counterInDb = counters.find((m) => m.id === id);
   counters.splice(counters.indexOf(counterInDb), 1);
   return counterInDb;
 }
+
+function deleteAll() {
+  counters = [];
+}
+
+function resetAll() {
+  counters.forEach((element) => {
+    element.value = 0;
+  });
+}
+
+const FakeService = {
+  getCounters,
+  getCounter,
+  addCounter,
+  updateCounter,
+  deleteCounter,
+  deleteAll,
+  resetAll,
+};
+
+export default FakeService;
