@@ -56,21 +56,30 @@ class App extends Component {
     this.retrieveCounters();
   };
 
+  handleLike = (counter) => {
+    FakeService.updateCounter(counter, 0);
+    this.retrieveCounters();
+  };
+
   render() {
+    const { counters } = this.state;
+
     return (
       <React.Fragment>
         <Navbar
-          totalCounters={this.state.counters.filter((c) => c.value > 0).length}
+          totalCounters={counters.filter((c) => c.value > 0).length}
+          totalLikes={counters.filter((c) => c.liked === true).length}
         />
         <main className="container">
           <Counters
-            counters={this.state.counters}
+            counters={counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
             onDelete={this.handleDelete}
             onDecrement={this.handleDecrement}
             onAddCounter={this.handleAddCounter}
             onDeleteAll={this.handleDeleteAll}
+            onLike={this.handleLike}
           />
         </main>
       </React.Fragment>

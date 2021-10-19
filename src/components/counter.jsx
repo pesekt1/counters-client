@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Like from "./standard/like";
 
 class Counter extends Component {
   disableDecrementButton() {
@@ -18,7 +19,7 @@ class Counter extends Component {
   }
 
   render() {
-    const { onDecrement, onIncrement, onDelete, counter, children } =
+    const { onDecrement, onIncrement, onDelete, onLike, counter, children } =
       this.props;
 
     return (
@@ -45,6 +46,7 @@ class Counter extends Component {
           >
             delete
           </button>
+          <Like liked={counter.liked} onClick={() => onLike(counter)} />
         </h1>
       </div>
     );

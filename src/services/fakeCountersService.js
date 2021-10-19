@@ -1,7 +1,7 @@
 let counters = [
-  { id: 1, value: 0 },
-  { id: 2, value: 0 },
-  { id: 3, value: 0 },
+  { id: 1, value: 0, liked: false },
+  { id: 2, value: 0, liked: false },
+  { id: 3, value: 0, liked: false },
 ];
 
 function getCounters() {
@@ -23,6 +23,9 @@ function addCounter() {
 function updateCounter(counter, increment) {
   let counterInDb = counters.find((c) => c.id === counter.id) || {};
   counterInDb.value = counter.value + increment;
+
+  counterInDb.liked = increment ? counterInDb.liked : !counterInDb.liked;
+
   return counterInDb;
 }
 
