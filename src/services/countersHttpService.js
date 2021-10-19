@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.baseURL = process.env.API_URL;
+
 class CountersService {
   getAll() {
     return axios.get("http://localhost:3001/api/counters");
