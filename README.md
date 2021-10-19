@@ -34,22 +34,12 @@ REACT_APP_API_URL=http://localhost:3001/api/
 REACT_APP_API_URL=https://counters-web-server.herokuapp.com/api/
 ```
 
+- In the http service we set up axios.defaults.baseURL: When deployed to Heroku, it will read from env.production.
 ```javascript
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
+class CountersService {
+  getAll() {
+    return axios.get("counters");
+  }
 ```
