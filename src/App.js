@@ -57,8 +57,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("state.counters:", this.state.counters);
-    console.log("fake counters:", FakeService.getCounters());
     return (
       <React.Fragment>
         <Navbar
