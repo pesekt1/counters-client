@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import Counters from "./components/counters";
 import React, { Component } from "react";
+import { getCounters } from "./services/fakeCountersService";
 
 class App extends Component {
   state = {
@@ -12,6 +13,13 @@ class App extends Component {
       { id: 4, value: 0 },
     ],
   };
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     counters: [],
+  //   };
+  // }
 
   handleDelete = (counterId) => {
     const counters = this.state.counters.filter((c) => c.id !== counterId);
@@ -46,7 +54,8 @@ class App extends Component {
   handleAddCounter = () => {
     console.log("add counter");
     const counters = [...this.state.counters];
-    const counter = { id: counters[counters.length - 1].id + 1, value: 0 };
+    const newId = counters.length ? counters[counters.length - 1].id + 1 : 1;
+    const counter = { id: newId, value: 0 };
     counters.push(counter);
     this.setState({ counters: counters });
   };
