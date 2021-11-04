@@ -5,7 +5,7 @@ const Navbar = (props) => {
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             <h1>
-              Navbar test:{" "}
+              Navbar{" "}
               <span className="badge rounded-pill bg-primary">
                 Active counters: {props.totalCounters}
               </span>
