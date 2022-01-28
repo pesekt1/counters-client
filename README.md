@@ -14,7 +14,7 @@
 - http-service-deployment
 
 Functioning demo on Heroku:
-https://react-demo-web-dev.herokuapp.com/
+https://counters-web-client.herokuapp.com/
 
 Next steps: 
 
