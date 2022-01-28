@@ -10,7 +10,7 @@ const Navbar = (props) => {
                 Active counters: {props.totalCounters}
               </span>
               <span className="badge rounded-pill bg-primary m-2">
-                Active counters: {props.totalLikes}
+                Liked counters: {props.totalLikes}
               </span>
             </h1>
           </a>
