@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import Counters from "./components/counters";
 import React, { Component } from "react";
+import _ from "lodash";
 
 class App extends Component {
   state = {
@@ -36,10 +37,8 @@ class App extends Component {
   };
 
   handleReset = () => {
-    const counters = this.state.counters.map((c) => {
-      c.value = 0;
-      return c;
-    });
+    const counters = _.cloneDeep(this.state.counters);
+    counters.map((c) => (c.value = 0));
     this.setState({ counters: counters });
   };
 
