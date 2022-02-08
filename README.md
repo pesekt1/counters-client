@@ -15,3 +15,7 @@
 
 Functioning demo on Heroku:
 https://counters-web-client.herokuapp.com/
+
+
+## Next steps
+refactor .then().catch() into try-catch async await
