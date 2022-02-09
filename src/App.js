@@ -37,8 +37,9 @@ class App extends Component {
   };
 
   handleReset = () => {
+    //const counters = [...this.state.counters]; //wrong way... still have references to the objects inside the array.
     const counters = _.cloneDeep(this.state.counters);
-    counters.map((c) => (c.value = 0));
+    counters.map((c) => (c.value = 0)); //changing the state directly
     this.setState({ counters: counters });
   };
 
