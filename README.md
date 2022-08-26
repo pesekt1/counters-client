@@ -12,6 +12,7 @@
 - like-icon-component
 - http-service
 - http-service-deployment
+- github action
 
 Functioning demo on Heroku:
 https://counters-web-client.herokuapp.com/
