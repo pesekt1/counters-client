@@ -1,25 +1,28 @@
 # React-demo
 
-## branches sequence:
+## Add github action for CI/CD
 
-- create-react-app
-- hello-world
-- counter-app
-- composing-components-1
-- composing-components-2
-- composing-components-3
-- fake-counters-service
-- like-icon-component
-- http-service
-- http-service-deployment
-- github action
+We need a yml file to run the build and test.
 
-Functioning demo on Heroku:
-https://counters-web-client.herokuapp.com/
+Create a folder .github/worklows/ and add the following file test.yml:
 
 
-## Next steps
-refactor .then().catch() into try-catch async await
+```yml
+name: CI
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
+```
 
+This will find the Jest tests and run them.
 
-#
+Now if we push to github repo, this action will be triggered, all the tests will run.
+
+If we are deploying to Heroku, we can set up automatic deployment after all the tests were successful.
