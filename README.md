@@ -13,6 +13,7 @@
 - http-service
 - http-service-deployment
 - github action
+- storybook
 
 Functioning demo on Heroku:
 https://counters-web-client.herokuapp.com/
