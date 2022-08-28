@@ -1,6 +1,9 @@
 # React-demo
 
 ## http service - deployment to Heroku
+
+- NOTE: This branch works with the counters-server branche "counters-API". Dont use it with the main branche.
+
 - We hardcoded the APIs, so when we have our backend and frontend deployed on Heroku, it does not work... Our web client is still communicating with our localhost.
 
 Add env files: Fill the values according to your project.
