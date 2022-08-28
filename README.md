@@ -1,7 +1,7 @@
 # React-demo
 
 ## implementing http service
-- We want to connect to existing API (web server app).
+- We want to connect to existing API (web server app). NOTE: This branch works with the counters-server branche "counters-API". Dont use it with the main branche.
 
 - axios library: create http requests to our backend which runs locally on 3001 port:
 
